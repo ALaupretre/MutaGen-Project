@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "inter", sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	height: 100vh;
+	margin: 0;
+	overflow: hidden;
+
+}
+
+#container {
+	position: relative;
+	width: 800px;
+	height: 900px;
+	border: 2px solid black;
+	padding: 10px;
+}
+
+
+#container .noeud.gen0 {
+	position: absolute;
+	background-color: #F5F2EC;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	z-index: 2;
+}
+
+#container .branche {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+}
+
+
+.bras {
+	position: absolute;
+}
+
+.bras.gen1 {
+	width: 250px;
+	z-index: 1;
+	transform: translateY(-50%);
+}
+
+.bras.gen2 {
+	width: 100px;
+	z-index: 0;
+	transform-origin: left;
+	/* transform: translateY(50%); */
+}
+
+.gen2-container {
+	position: absolute;
+	left: 250px;
+}
+
+
+
+.tige {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 2px;
+	width: 100%;
+	background-color: black;
+}
+
+.noeud {
+	position: absolute;
+	right: 0;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	outline: black solid 2px;
+	transform: translate(50%, -50%);
+	cursor: pointer
+}
+
+.img-container {
+	background-color: #F5F2EC;
+	position: absolute;
+	border: 2px solid black;
+	width: 300px;
+	height: 400px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	animation: append-animate .3s ease;
+	z-index: 50;
+}
+
+.img-small {
+	width: 100%;
+	cursor: zoom-in;
+}
+
+@keyframes append-animate {
+	from {
+		width: 0;
+		height: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+
+
+.gen1 .noeud {}
