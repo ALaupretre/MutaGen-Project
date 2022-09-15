@@ -6,14 +6,16 @@
 
 body {
 	font-family: "inter", sans-serif;
+	/* 
+
+	
+	 */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-
-	height: 100vh;
-	margin: 0;
 	overflow: hidden;
+	height: 100vh;
 
 }
 
@@ -79,25 +81,35 @@ body {
 .noeud {
 	position: absolute;
 	right: 0;
-	width: 15px;
-	height: 15px;
+	width: 20px;
+	height: 20px;
 	border-radius: 50%;
-	outline: black solid 2px;
+	border: black solid 2px;
 	transform: translate(50%, -50%);
 	cursor: pointer
 }
 
 .img-container {
-	background-color: #F5F2EC;
+
 	position: absolute;
 	border: 2px solid black;
-	width: 300px;
-	height: 400px;
+	width: 250px;
+	height: 450px;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	animation: append-animate .3s ease;
+	animation: open-img .3s ease;
 	z-index: 50;
+	overflow: hidden;
+
+}
+
+.img-container p {
+	color: white;
+	font-size: .7rem;
+	mix-blend-mode: difference;
+	margin: 5px;
+	word-wrap: break-word;
 }
 
 .img-small {
@@ -105,7 +117,7 @@ body {
 	cursor: zoom-in;
 }
 
-@keyframes append-animate {
+@keyframes open-img {
 	from {
 		width: 0;
 		height: 0;
