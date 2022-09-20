@@ -27,6 +27,11 @@ body {
 	padding: 10px;
 }
 
+#container h1 {
+	font-weight: 500;
+	margin: 5px;
+}
+
 
 #container .noeud.gen0 {
 	position: absolute;
@@ -76,6 +81,7 @@ body {
 	height: 2px;
 	width: 100%;
 	background-color: black;
+	animation: extend-tige 2s ease;
 }
 
 .noeud {
@@ -90,7 +96,6 @@ body {
 }
 
 .img-container {
-
 	position: absolute;
 	border: 2px solid black;
 	width: 250px;
@@ -104,17 +109,38 @@ body {
 
 }
 
-.img-container p {
+.img {
+	position: relative;
+	height: 260px;
+}
+
+.img-info {
 	color: white;
-	font-size: .7rem;
+	font-size: .8rem;
 	mix-blend-mode: difference;
-	margin: 5px;
 	word-wrap: break-word;
+	margin: 5px;
+}
+
+.img-title {
+	/* font-size: 1.5rem; */
+}
+
+.voir {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	text-align: right;
 }
 
 .img-small {
+	position: absolute;
 	width: 100%;
 	cursor: zoom-in;
+}
+
+.parameter {
+	margin-top: 10px;
 }
 
 @keyframes open-img {
@@ -125,6 +151,16 @@ body {
 
 	to {
 		opacity: 1;
+	}
+}
+
+@keyframes extend-tige {
+	from {
+		width: 0%;
+	}
+
+	to {
+		width: 100%;
 	}
 }
 
