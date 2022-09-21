@@ -78,33 +78,36 @@ getRelativePosition = (element) => {
 createImgContainer = (element, parameter) => {
 	const imgContainer = document.createElement("div");
 	imgContainer.classList.add("img-container");
-	imgContainer.style.top = getRelativePosition(element).top + "px";
-	imgContainer.style.left = getRelativePosition(element).left + "px";
+	// imgContainer.style.top = getRelativePosition(element).top + "px";
+	// imgContainer.style.left = getRelativePosition(element).left + "px";
 	imgContainer.style.backgroundColor = palette[element.getAttribute("branche")];
 
 	imgContainer.innerHTML = `
-	<div class="img">
+	<div class="img-box">
 		<img class="img-small" src="./images-small/${element.getAttribute("branche") + element.getAttribute("gen2")}.png">
 		<div class="img-info img-title">
 		${element.getAttribute("branche") + element.getAttribute("gen2")}
 		</div>
 		<div class="img-info voir">VOIR EN<br>PLEINE RESOLUTION</div>
 	</div>
-	<p class="img-info parameter">
-			${parameter}
-	</p>
+	<div class="img-info parameter-box">
+		<p class="img-info parameter">
+				${parameter}
+		</p>
+	</div>
+	
 	
 	`;
 
 	imgContainer.addEventListener("click", () => closeImgContainer());
-	container.appendChild(imgContainer);
+	document.body.appendChild(imgContainer);
 };
 
 document.querySelectorAll(".noeud").forEach((noeud) => {
 	noeud.addEventListener("click", () => {
 		console.log(noeud.getAttribute("branche"), noeud.getAttribute("gen2"));
 		closeImgContainer();
-		fetch('./parameters/66.txt')
+		fetch(`./parameters/${noeud.getAttribute("branche") + noeud.getAttribute("gen2")}.txt`)
 			.then(response => response.text())
 			.then(text => { createImgContainer(noeud, text); });
 	});
@@ -113,6 +116,8 @@ document.querySelectorAll(".noeud").forEach((noeud) => {
 closeImgContainer = () => {
 	document.querySelectorAll(".img-container").forEach(e => e.remove());
 };
+
+
 
 
 
