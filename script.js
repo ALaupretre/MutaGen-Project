@@ -78,9 +78,13 @@ getRelativePosition = (element) => {
 createImgContainer = (element, parameter) => {
 	const imgContainer = document.createElement("div");
 	imgContainer.classList.add("img-container");
-	// imgContainer.style.top = getRelativePosition(element).top + "px";
-	// imgContainer.style.left = getRelativePosition(element).left + "px";
+	imgContainer.style.top = getRelativePosition(element).top + "px";
+	imgContainer.style.left = getRelativePosition(element).left + "px";
 	imgContainer.style.backgroundColor = palette[element.getAttribute("branche")];
+	setTimeout(() => {
+		imgContainer.style.left = "50%";
+		imgContainer.style.top = "50%";
+	}, 100);
 
 	imgContainer.innerHTML = `
 	<div class="img-box">
@@ -100,18 +104,19 @@ createImgContainer = (element, parameter) => {
 	`;
 
 	imgContainer.addEventListener("click", () => closeImgContainer());
-	document.body.appendChild(imgContainer);
+	container.appendChild(imgContainer);
 };
 
 document.querySelectorAll(".noeud").forEach((noeud) => {
 	noeud.addEventListener("click", () => {
-		console.log(noeud.getAttribute("branche"), noeud.getAttribute("gen2"));
 		closeImgContainer();
 		fetch(`./parameters/${noeud.getAttribute("branche") + noeud.getAttribute("gen2")}.txt`)
 			.then(response => response.text())
 			.then(text => { createImgContainer(noeud, text); });
 	});
 });
+
+document.body.addEventListener("click", () => closeImgContainer());
 
 closeImgContainer = () => {
 	document.querySelectorAll(".img-container").forEach(e => e.remove());
