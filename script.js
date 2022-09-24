@@ -75,7 +75,7 @@ getRelativePosition = (element) => {
 	return { top, left };
 };
 
-createImgContainer = (element, parameter) => {
+createImgContainer = (element, parameterString) => {
 	const imgContainer = document.createElement("div");
 	imgContainer.classList.add("img-container");
 	imgContainer.style.top = getRelativePosition(element).top + "px";
@@ -94,37 +94,62 @@ createImgContainer = (element, parameter) => {
 		</div>
 		<div class="img-info voir">VOIR EN<br>PLEINE RESOLUTION</div>
 	</div>
+
 	<div class="img-info parameter-box">
 		<p class="img-info parameter">
-				${parameter}
+				${parameterString}
 		</p>
 	</div>
-	
-	
+	<button class="copy-btn">COPIER LES PARAMETRES</button>
 	`;
 
-	imgContainer.addEventListener("click", () => closeImgContainer());
+
 	container.appendChild(imgContainer);
 };
 
+
 document.querySelectorAll(".noeud").forEach((noeud) => {
 	noeud.addEventListener("click", () => {
-		closeImgContainer();
+		closeDivs("img-container");
+
 		fetch(`./parameters/${noeud.getAttribute("branche") + noeud.getAttribute("gen2")}.txt`)
 			.then(response => response.text())
-			.then(text => { createImgContainer(noeud, text); });
+			.then(text => {
+				createImgContainer(noeud, text);
+
+				document.querySelector(".copy-btn").addEventListener("click", () =>
+					copyToClipboard(text));
+
+				document.querySelector(".img-box").addEventListener("click", () => {
+					createLargeImg(noeud.getAttribute("branche") + noeud.getAttribute("gen2"));
+				});
+			});
 	});
 });
 
-document.body.addEventListener("click", () => closeImgContainer());
+createLargeImg = ((imgId) => {
+	closeDivs("img-large-container");
 
-closeImgContainer = () => {
-	document.querySelectorAll(".img-container").forEach(e => e.remove());
+	const imgLargeContainer = document.createElement("div");
+	imgLargeContainer.classList.add("img-large-container");
+
+	imgLargeContainer.innerHTML = `
+	<img class="img-large" src="./images-large/${imgId}.png">
+	`;
+
+	document.body.appendChild(imgLargeContainer);
+	imgLargeContainer.addEventListener("click", () => closeDivs("img-large-container"));
+});
+
+// document.body.addEventListener("click", () => closeDivs("img-large-container"));
+
+closeDivs = (divClassName) => {
+	document.querySelectorAll("." + divClassName).forEach(e => e.remove());
 };
 
 
-
-
-
-
-// brasContainer.style.transform = `rotate(${(i + 1) * (360 / 7)}deg)`;
+//COPY TO CLIPBOARD GENERAL FUNCTION
+copyToClipboard = (string) => {
+	navigator.clipboard.writeText(string);
+	console.log("string copied to clipboard");
+};

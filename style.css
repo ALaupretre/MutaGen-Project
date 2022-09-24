@@ -27,12 +27,6 @@
 
 body {
 	font-family: "inter", sans-serif;
-	/* padding: 10px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center; */
-	/* overflow: hidden; */
 }
 
 #container {
@@ -184,9 +178,58 @@ body {
 	overflow: auto;
 }
 
+
+/* PARAMETER */
 .parameter {
 	font-size: .8rem;
 }
+
+
+/* BOUTON COPIER */
+.copy-btn {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-weight: 600;
+	font-family: inherit;
+	outline: 0;
+	border-radius: 0;
+	border: 2px solid black;
+	padding: 4px;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.copy-btn:hover {
+	background-color: rgb(224, 224, 224);
+}
+
+.copy-btn:active {
+	background-color: rgb(126, 126, 126);
+}
+
+
+/* LARGE IMAGE */
+
+.img-large-container {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 200;
+}
+
+.img-large {}
+
+
+/* .parameter:hover:before {
+	font-size: 3rem;
+	position: absolute;
+	content: "Save m3p to clipboard";
+} */
+
 
 @keyframes extend-tige {
 	from {
@@ -197,7 +240,3 @@ body {
 		width: 100%;
 	}
 }
-
-
-
-.gen1 .noeud {}
