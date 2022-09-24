@@ -117,8 +117,10 @@ document.querySelectorAll(".noeud").forEach((noeud) => {
 			.then(text => {
 				createImgContainer(noeud, text);
 
-				document.querySelector(".copy-btn").addEventListener("click", () =>
-					copyToClipboard(text));
+				document.querySelector(".copy-btn").addEventListener("click", (copyBtn) => {
+					copyToClipboard(text);
+					copyBtn.target.innerHTML = 'COPIÉS';
+				});
 
 				document.querySelector(".img-box").addEventListener("click", () => {
 					createLargeImg(noeud.getAttribute("branche") + noeud.getAttribute("gen2"));
